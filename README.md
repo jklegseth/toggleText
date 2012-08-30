@@ -25,7 +25,7 @@ Simply use a pipe-delimited string in the attribute *data-toggle-text*:
 
 **toggleClass**: A CSS class to be assigned to the element when in toggled state. This can be a hook for determining state in the callback or elsewhere in your code.
 
-**force**: Expects *default* or *toggle*. This option is used to ignore the default behavior of the plugin (toggling) to set an element(s) to a specific state, *default* being default text, *toggle* being default. The reason for this option is sometimes you need to toggle a bunch of elements to a specific state, such as "Expand" or "Collapse." See *Using the force option* below for an example.
+**force**: Expects *default* or *toggle*. This option is used to ignore the default behavior of the plugin (toggling) to set an element(s) to a specific state, *default* being default text, *toggle* being toggle text. The reason for this option is sometimes you need to toggle a bunch of elements to a specific state, such as "Expand" or "Collapse." See *Using the force option* below for an example.
 
 **callback**: A callback function can be supplied as the only or as the second argument:
 
@@ -41,7 +41,8 @@ Simply use a pipe-delimited string in the attribute *data-toggle-text*:
           attr: '',               //not necessary to pass empty string, just here to show usage
           defaultText: 'Hello',
           toggleText: 'Goodbye',
-          toggleClass: 'toggled'
+          toggleClass: 'toggled',
+          force: 'default'        //this would force the text for this element to always be default, or "Hello"
         }, function(){
           //do something
         });
@@ -50,7 +51,7 @@ Simply use a pipe-delimited string in the attribute *data-toggle-text*:
 
 ##More Detail
 =========================
-The classic case is a bunch of Expand/Collapse links on a page that show and hide content. Generally this is all handled in JavaScript:
+The simple case is a link that expands/collapses content. Generally this is all handled in JavaScript:
 
     <style type="text/css">
       .list { display: none; }
@@ -71,7 +72,7 @@ The classic case is a bunch of Expand/Collapse links on a page that show and hid
       });
     </script>
 
-There's nothing terribly wrong with that, although we are setting content (text) inside our JavaScript. But suppose the same example,  with multiple a.toggle needing slightly different text:
+There's nothing terribly wrong with that, although we are setting content (text) inside our JavaScript. But consider the same example  with multiple a.toggle elements needing slightly different text:
 
     <style type="text/css">
       .list { display: none; }
@@ -117,7 +118,7 @@ Now a simple operation becomes more of a pain.
       });
     </script>
 
-That's getting ugly. And anytime a new a.toggle is added you're back to your JavaScript to hard code some text values. Using *toggleText* we move the content back to the HTML using a *data-* attribute: *data-toggle-text*:
+That's getting ugly. And anytime a new *a.toggle* is added you're back to your JavaScript to hard code some text values. Using *toggleText* we move the content back to the HTML using a *data-* attribute: *data-toggle-text*:
 
     <style type="text/css">
       .list { display: none; }
@@ -159,7 +160,7 @@ By default, *toggleText* looks for the *data-toggle-text* attribute, expecting a
 
     data-toggle-text="Hello|Goodbye"
 
-The first value should also be the default text already inside of this element, the second value is the toggled text to show on click. This keeps the content in the markup and allows for an infinite set of tags using a common handler.
+The first value should also be the default text already inside of this element, the second value is the toggled text to show on click. The JavaScript is now kept out of the content business and sticks to behavior.
 
 You don't have to use the *data-toggle-test* attribute however. You can pass in *defaultText* and *toggleText* options that will serve the same purpose (they also override the *data-toggle-text* attribute if set):
 
@@ -178,7 +179,7 @@ You don't have to use the *data-toggle-test* attribute however. You can pass in 
       });
     </script>
 
-##Using the *force* option
+###Using the *force* option
 =========================
 Expanding on the example above, suppose we want all the sections plus a top level link for Show All | Hide All:
 
