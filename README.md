@@ -25,7 +25,7 @@ Simply use a pipe-delimited string in the attribute *data-toggle-text*:
 
 **toggleClass**: A CSS class to be assigned to the element when in toggled state. This can be a hook for determining state in the callback or elsewhere in your code.
 
-**force**: Expects *default* or *toggle*. This option is used to ignore the default behavior of the plugin (toggling) to set an element(s) to a specific state, 0 being default text, 1 being default. The reason for this option is sometimes you need to toggle a bunch of elements to a specific state, such as "Expand" or "Collapse." See *Using the force option* below for an example.
+**force**: Expects *default* or *toggle*. This option is used to ignore the default behavior of the plugin (toggling) to set an element(s) to a specific state, *default* being default text, *toggle* being default. The reason for this option is sometimes you need to toggle a bunch of elements to a specific state, such as "Expand" or "Collapse." See *Using the force option* below for an example.
 
 **callback**: A callback function can be supplied as the only or as the second argument:
 
