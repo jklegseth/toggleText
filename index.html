@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+      <title>jQuery toggleText Plugin Example</title>
+      <style type="text/css">
+      body {
+        font: 13px/1em normal arial, helvetica, sans-serif;
+      }
+      ul {
+        display: none;
+        list-style: none;
+        margin: 10px 0;
+        padding: 0;
+      }
+      li {
+        border-bottom: 1px solid #eee;
+        padding: 5px;
+      }
+
+
+
+      div {
+        border: 1px solid #eee;
+        margin: 15px 0;
+        width: 400px;
+      }
+
+
+      .toggle {
+        background: #ddd;
+        display: block;
+        padding: 5px;
+
+      }
+      </style>
+  </head>
+  <body>
+    <a href="#" class="toggle-all" data-toggle-text="Show All|Hide All">Show All</a>
+
+    <div>
+      <a href="#" class="toggle" data-toggle-text="Show Scores|Hide Scores">Show Scores</a>
+      <ul class="list scores">
+        <li>Kentucky 47, Iowa 43</li>
+        <li>Wisconsin 12, Alabama 74</li>
+      </ul>
+    </div>
+
+    <div>
+      <a href="#" class="toggle" data-toggle-text="Show Stats|Hide Stats">Show Stats</a>
+      <ul class="list stats">
+        <li>Roger Doe 14pts, 5 rebounds</li>
+        <li>Don Was 37 pts, 8 rebounds, 2 assists</li>
+      </ul>
+    </div>
+
+
+    <div>
+      <a href="#" class="toggle" data-toggle-text="Show Records|Hide Records">Show Records</a>
+      <ul class="list records">
+        <li>Kentucky 4-1-1</li>
+        <li>Wisconsin 1-5-0</li>
+        <li>Texas 2-3</li>
+      </ul>
+    </div>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script src="js/jquery.toggleText.min.js"></script>
+  <script type="text/javascript">
+  //our callback function
+  var toggleSections = function($this) {
+    return function() {
+      //use our toggleClass option to get state
+      if ($this.hasClass('toggled')) {
+        //show our content
+        $('.list').show();
+        //use the force option to change all a.toggle to toggle text
+        $('.toggle').toggleText({ force: 'toggle'});
+      } else {
+        //hide our content
+        $('.list').hide();
+        //use the force option to change all a.toggle to default text
+        $('.toggle').toggleText({ force: 'default'});
+      }
+    };
+  };
+
+  $('body').on('click', 'a', function(event){
+    var $this = $(event.target);
+    //handles the a.toggle clicks
+    if ($this.is('.toggle')) {
+      $(this).toggleText().next('ul').toggle();
+
+    //handles the a.toggle-all, which needs to
+    //toggle itself but also set all a.toggle to the appropriate text
+    } else if ($this.is('.toggle-all')) {
+      $(this)
+      .toggleText({ toggleClass : 'toggled'}, toggleSections($(this)));
+    }
+    event.preventDefault();
+  });
+  </script>
+
+  </body>
+</html>
