@@ -213,8 +213,8 @@ Expanding on the example above, suppose we want all the sections plus a top leve
 
 We still use the *a.toggle* click handler as we did above, but the Show All needs to do more. Clicking *a.toggle-all* should:
 
-* Toggle it's text between *Show All* and *Hide All*
-* Toggle all *a.toggle* to match, i.e., if a.toggle-all text is Show All, all a.toggle should be Show
+* Toggle its text between *Show All* and *Hide All*
+* Toggle all *a.toggle* to match, i.e., if a.toggle-all text is Show All, all a.toggle should be Show <text>
 * All ul.list should be shown
 
 Here's how we can do that with the code above:
