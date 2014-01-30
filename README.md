@@ -1,4 +1,4 @@
-#jQuery toggleText Plubin
+#jQuery toggleText Plugin
 =========================
 jQuery plugin for toggling text using a *data-* attribute.
 
